@@ -1,9 +1,10 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * main - checks for uppercase letters
- * @c: is the letter tobe checked
- * Returns: 1 if uppercase and 0 otherwise
+ * _isupper - Check if paramter c represents an uppercase letter.
+ * @c: Int representing a character
+ * Return: Always 0.
  */
 int _isupper(int c)
 {
