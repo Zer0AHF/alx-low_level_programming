@@ -1,21 +1,21 @@
 #include <stdio.h>
 
-/*
- * main function prints the alphabet in lower case
- * always returns 0
+/**
+ * main - Prints the alphabet in lowercase, and then in uppercase.
+ *
+ * Return: Always 0.
  */
-
 int main(void)
 {
-        char alpha;
+	char letter;
 
-        for (alpha = 'a'; alpha <= 'z'; alpha++)
-                putchar(alpha);
+	for (letter = 'a'; letter <= 'z'; letter++)
+		putchar(letter);
 
-	for (alpha = 'A'; alpha <= 'Z'; alpha++)
-		putchar(alpha);
+	for (letter = 'A'; letter <= 'Z'; letter++)
+		putchar(letter);
 
-        putchar('\n');
+	putchar('\n');
 
-        return(0);
+	return (0);
 }
