@@ -5,6 +5,7 @@
  * @s: points to a char
  * Return: None.
  */
+
 void _puts_recursion(char *s)
 {
 	if (*s != '\0')
