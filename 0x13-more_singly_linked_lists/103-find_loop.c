@@ -1,43 +1,42 @@
 #include "lists.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * find_listint_loop - finds the loop in a linked list.
- * @head: head of a list.
+ * find_listint_loop - function that finds the loop in a linked list.
+ * @head: pointer to the head of linked list.
  *
- * Return: the address of the node where the loop starts.
+ * You are not allowed to use malloc, free or arrays.
+ * You can only declare a maximum of two variables in your function.
+ *
+ * Return: The address of the node where the loop starts, or NULL if,
+ * there is no loop.
  */
+
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *p2;
-	listint_t *prev;
-
-	p2 = head;
-	prev = head;
-	while (head && p2 && p2->next)
+	listint_t *slow_ptr = head, *fast_ptr = head;
+	if (head == NULL || head->next == NULL)
+		return (NULL);
+	slow_ptr = slow_ptr->next;
+	fast_ptr = fast_ptr->next->next;
+	while (fast_ptr && fast_ptr->next)
 	{
-		head = head->next;
-		p2 = p2->next->next;
-
-		if (head == p2)
-		{
-			head = prev;
-			prev =  p2;
-			while (1)
-			{
-				p2 = prev;
-				while (p2->next != head && p2->next != prev)
-				{
-					p2 = p2->next;
-				}
-				if (p2->next == head)
-					break;
-
-				head = head->next;
-			}
-			return (p2->next);
-		}
+		if (slow_ptr == fast_ptr)
+			break;
+		slow_ptr = slow_ptr->next;
+		fast_ptr = fast_ptr->next->next;
 	}
-
-	return (NULL);
+	/* if loop does not exists return NULL*/
+	if (slow_ptr != fast_ptr)
+		return (NULL);
+	/* if loop exists, start slow_ptr from head and fast_ptr from meet point */
+	slow_ptr = head;
+	while (slow_ptr != fast_ptr)
+	{
+		slow_ptr = slow_ptr->next;
+		fast_ptr = fast_ptr->next;
+	}
+	/* return slow_ptr */
+	return (slow_ptr);
 }
